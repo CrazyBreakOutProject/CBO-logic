@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>BarraDes.h</itemPath>
+      <itemPath>BarraPLY.h</itemPath>
+      <itemPath>Bola.h</itemPath>
+      <itemPath>Constantes.h</itemPath>
+      <itemPath>JsonCreator.h</itemPath>
+      <itemPath>controlador.h</itemPath>
+      <itemPath>lista.h</itemPath>
+      <itemPath>nodo.h</itemPath>
+      <itemPath>servidor.h</itemPath>
+      <itemPath>structs.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>BarraDes.cpp</itemPath>
+      <itemPath>BarraPLY.cpp</itemPath>
+      <itemPath>Bola.cpp</itemPath>
+      <itemPath>Constantes.cpp</itemPath>
+      <itemPath>JsonCreator.cpp</itemPath>
+      <itemPath>controlador.cpp</itemPath>
+      <itemPath>lista.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+      <itemPath>nodo.cpp</itemPath>
+      <itemPath>servidor.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
+          <commandLine>-pthread</commandLine>
+        </ccTool>
+      </compileType>
+      <item path="BarraDes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BarraDes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BarraPLY.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BarraPLY.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bola.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bola.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Constantes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Constantes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JsonCreator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JsonCreator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="controlador.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="controlador.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lista.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lista.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nodo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nodo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="servidor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="servidor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="structs.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <commandLine>-pthread</commandLine>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="BarraDes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BarraDes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="BarraPLY.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BarraPLY.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bola.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bola.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Constantes.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Constantes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JsonCreator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JsonCreator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="controlador.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="controlador.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lista.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lista.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nodo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="nodo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="servidor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="servidor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="structs.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
