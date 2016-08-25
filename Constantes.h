@@ -7,7 +7,9 @@
 
 #ifndef CONSTANTES_H
 #define	CONSTANTES_H
-
+#include <iostream>
+#include <ctime>
+#include <chrono>
 /**
  * Datos internos para las constantes que se usaran en 
  * el proyecto.
@@ -77,7 +79,7 @@ public:
     /*cantidad total de bloques por fila*/
     static const int ROW_BRICK=16;
     /*tamaño del bloque*/
-    static const int BAR_SIZE=50;
+    static const int BRICK_SIZE=50;
     
     //constantes varias
     static const int CERO=0;
@@ -90,7 +92,7 @@ public:
     static const int SIETE=7;
     static const int DIEZ=10;
     static const int CINCUENTA=50;
-    static const int SLEEP_TIME=20;
+    static const double SLEEP_TIME;
     
     /*------constantes para los archivos tipos Json-------*/
     static const char* TYPE_CONNECTION;
@@ -110,6 +112,17 @@ public:
     static const char* error4;
     static const char* error5;
     static const char* error6;
+    
+    void sleep_(double pSeconds){
+        std::chrono::time_point<std::chrono::system_clock> start, end;
+        start = std::chrono::system_clock::now();
+        std::chrono::duration<double> elapsed_seconds;
+        while(pSeconds>elapsed_seconds.count()){
+            end = std::chrono::system_clock::now();
+            elapsed_seconds= end-start;
+        }
+        std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+    };
     
 };
 

@@ -15,6 +15,8 @@ servidor::servidor(int port) {
     _portno= port;
     _Screens= new lista();
     pthread_t hiloServer;
+    _Boolplyrs=(bool*)malloc(sizeof(bool)*MAX_PLAYERS);
+    _plyMSG=(string*)malloc(sizeof(string)*MAX_PLAYERS);
     for(int i=0; i<MAX_PLAYERS; i++)
         _Boolplyrs[i]=false;
     //inicializar el mutex 
@@ -166,7 +168,7 @@ void* servidor::gettDatas(int pPlyr, int newsockfd) {
  */
 void servidor::sendMSG(const char* msg, int lenght) {
     nodo* temp=_Screens->getHead();
-    if(debug)cout<<_Screens->getSize()<<endl;
+    //if(debug)cout<<_Screens->getSize()<<endl;
     for(int i =0; i<_Screens->getSize(); i++){
         _n=send(temp->getData(), msg, lenght,0);
         if (_n < CERO) 

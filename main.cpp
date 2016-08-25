@@ -5,26 +5,25 @@
  * Created on February 10, 2016, 1:55 PM
  */
 
-#include <cstdlib>
 #include <iostream>
-#include <string>
-#include "Bola.h"
-#include "BarraPLY.h"
-#include "BarraDes.h"
-#include <pthread.h>
-#include <string.h>
-#include <random>
-#include "servidor.h"
-#include "controlador.h"
-#include "lista.h"
-#include "rapidjson/document.h"
-#include "rapidjson/prettywriter.h"
-
+#include <ctime>
+#include <chrono>
 using namespace std;
-
 /*
  * 
  */
+
+void sleep_(double pSeconds){
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds;
+    while(pSeconds>elapsed_seconds.count()){
+        end = std::chrono::system_clock::now();
+        elapsed_seconds= end-start;
+    }
+    std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+}
+
 int main(int argc, char** argv) {
     /*
     ThreadData datos;
@@ -90,6 +89,7 @@ std::string item_address;ver->sendMSG("hola_mundo",10);
     }
     cin.ignore();*/
     //controlador * pruebaControlador = new controlador(5001);
+    sleep_(0.05);
     /*prueba de coliciones
     Bola * pBola= new Bola(180,150);
     BarraDes * pBloque = new BarraDes(130,160,1);
@@ -155,7 +155,7 @@ std::string item_address;ver->sendMSG("hola_mundo",10);
     void * pointer = malloc(14);
     cout<<(int*)pointer<<endl;
     free(pointer);*/
-    
+    /*
     
     srand(time(NULL));
     int POS_Y_PLY= 600-120;
@@ -179,7 +179,7 @@ std::string item_address;ver->sendMSG("hola_mundo",10);
     //_ply[1]= new BarraPLY(1);
     int _BallsLeft=1;
     int _PlayersLeft=2;
-    /*---------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------*
     //incializacion de los bloques
     int _BarrsLeft=15;
     int space=0;
@@ -189,13 +189,13 @@ std::string item_address;ver->sendMSG("hola_mundo",10);
         _barras[i]->setDatas(i*50,(i*50)+(50),fuerza);
     }
     //prueba para pelota sin golpear--funciona
-    string pruebaJson= nuevoJson->create(_pelotaPrueba, _ply,NULL, _BallsLeft,_PlayersLeft,-1);
+    //string pruebaJson= nuevoJson->create(_pelotaPrueba, _ply,NULL, _BallsLeft,_PlayersLeft,-1);
     //prueba para pelota golpeada--funciona a medias 
     //_barras[1]->impact();
     //string pruebaJson= nuevoJson->create(_pelotaPrueba, _ply, _barras[1],_BallsLeft,_PlayersLeft,1);
     //prueba para terminar juego--funciona
     //string pruebaJson= nuevoJson->create(NULL, _ply, NULL, _BallsLeft,_PlayersLeft,-2);
-    cout<<pruebaJson<<endl;
+    cout<<pruebaJson<<endl;*/
     return 0;
 }
 

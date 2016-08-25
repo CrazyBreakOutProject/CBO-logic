@@ -35,11 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/BarraDes.o \
-	${OBJECTDIR}/BarraPLY.o \
 	${OBJECTDIR}/Bola.o \
+	${OBJECTDIR}/Brick.o \
 	${OBJECTDIR}/Constantes.o \
 	${OBJECTDIR}/JsonCreator.o \
+	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/controlador.o \
 	${OBJECTDIR}/lista.o \
 	${OBJECTDIR}/main.o \
@@ -71,20 +71,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/crazybreakoutlogic: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/crazybreakoutlogic ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/BarraDes.o: BarraDes.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BarraDes.o BarraDes.cpp
-
-${OBJECTDIR}/BarraPLY.o: BarraPLY.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BarraPLY.o BarraPLY.cpp
-
 ${OBJECTDIR}/Bola.o: Bola.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Bola.o Bola.cpp
+
+${OBJECTDIR}/Brick.o: Brick.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Brick.o Brick.cpp
 
 ${OBJECTDIR}/Constantes.o: Constantes.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -95,6 +90,11 @@ ${OBJECTDIR}/JsonCreator.o: JsonCreator.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/JsonCreator.o JsonCreator.cpp
+
+${OBJECTDIR}/Player.o: Player.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
 
 ${OBJECTDIR}/controlador.o: controlador.cpp 
 	${MKDIR} -p ${OBJECTDIR}

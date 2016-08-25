@@ -1,12 +1,5 @@
-/* 
- * File:   Constantes.cpp
- * Author: ellioth
- * 
- * Created on February 10, 2016, 2:43 PM
- */
 
 #include "Constantes.h"
-
 
 const char* Constantes::error1="ERROR opening socket\0";
 const char* Constantes::error2="ERROR on binding\0";
@@ -27,3 +20,4 @@ const char* Constantes::BRICK_DEL="del";
 const char* Constantes::BALL_POS="ballPos";
 const char* Constantes::POWER="power";
 const char* Constantes::POS="pos";
+const double Constantes::SLEEP_TIME=0.6;

@@ -48,15 +48,17 @@ private:
     pthread_mutex_t _lock;
     //hilo para el listener
     
-    int counter;
+    //int counter;
     //datos propios de la instanciacion del servidor
-    int _sockfd, _newsockfd, _portno, _n, _codigos;
+    int _sockfd, _newsockfd, _portno, _n;// _codigos;
     socklen_t _clilen;
     char* _id;
     struct sockaddr_in _serv_addr, _cli_addr;
     //datos para hacer el observer
-    bool _Boolplyrs[MAX_PLAYERS];
-    string _plyMSG[MAX_PLAYERS];
+    //bool _Boolplyrs[MAX_PLAYERS];
+    //string _plyMSG[MAX_PLAYERS];
+    bool* _Boolplyrs;
+    string* _plyMSG;
     //_ToScreen es el sockfd que sera el cliente al cual se le envia
     //la imagen.
     lista * _Screens;

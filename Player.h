@@ -1,5 +1,5 @@
 /* 
- * File:   BarraPLY.h
+ * File:   Player.h
  * Author: ellioth
  *
  * Created on February 10, 2016, 1:56 PM
@@ -13,22 +13,24 @@
 #include <iostream>
 #include "rapidjson/document.h"
 #include "rapidjson/prettywriter.h"
+#include "Bola.h"
 
 using namespace std;
 
 /**
  * clase para crear los objetos de los bloques.
  */
-class BarraPLY: public Constantes {
+class Player: public Constantes {
 public:
-    BarraPLY(int pId);
-    virtual ~BarraPLY();
+    Player(int pId);
+    virtual ~Player();
     void setDatas(int pID);
     int getSize();
     int resize(int pOP);
     int getPosX();
     int getPosY();
     void move(string Moviment);
+    bool checkHit(int * pBallX, int * pBallY, Bola* pBall);
 private:
     int _id;
     int _PosX,_PosY;

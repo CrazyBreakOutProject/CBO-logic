@@ -9,8 +9,8 @@
 #define	JASONCREATOR_H
 #include <string>
 #include <iostream>
-#include "BarraDes.h"
-#include "BarraPLY.h"
+#include "Brick.h"
+#include "Player.h"
 #include "Bola.h"
 #include "Constantes.h"
 #include "rapidjson/document.h"
@@ -27,7 +27,7 @@ class JsonCreator: public Constantes {
 public:
     JsonCreator();
     virtual ~JsonCreator();    
-    string create(Bola* bola[], BarraPLY* plyrs[], BarraDes* Barrs,int pBolas,
+    string create(Bola* bola[], Player* plyrs[], Brick* Barrs,int pBolas,
     int pPlyrs, int pBarrs);
 private:
 };
