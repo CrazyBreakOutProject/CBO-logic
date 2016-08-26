@@ -8,6 +8,8 @@
 #include <iostream>
 #include <ctime>
 #include <chrono>
+#include "controlador.h"
+
 using namespace std;
 /*
  * 
@@ -88,8 +90,8 @@ std::string item_address;<<endl;
 std::string item_address;ver->sendMSG("hola_mundo",10);
     }
     cin.ignore();*/
-    //controlador * pruebaControlador = new controlador(5001);
-    sleep_(0.05);
+    controlador * pruebaControlador = new controlador(5001);
+    //sleep_(0.05);
     /*prueba de coliciones
     Bola * pBola= new Bola(180,150);
     BarraDes * pBloque = new BarraDes(130,160,1);

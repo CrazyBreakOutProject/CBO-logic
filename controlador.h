@@ -59,15 +59,13 @@ private:
      * _BallsLeft-> dato que contiene la cantidad de pelotas en campo
      * _BarrsLeft-> dato que contiene la cantidad de barras restante en campo.
      */
-    int _BallsLeft,_BricksHit,_BricksLeft;
+    int _BallsLeft,_BrickHit,_BricksLeft;
     void MainLoop();
     void checkForMsgPlayers(int * pAmmountPLayers);
     void checkCondForMsg();
     void destroyObj(int BarNum);
     void resizeBar(int pTypeOP);
     void checkColl();
-    void checkCollBrr(int bar, int *x, int*y, bool *bandera);
-    void checkCollPly(int plyr, int *x, int*y, bool *bandera);
 };
 
 #endif	/* CONTROLER_H */

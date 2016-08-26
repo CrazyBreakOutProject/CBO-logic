@@ -127,7 +127,7 @@ void servidor::ClasifiedClient(int pSockFd, bool * pBandera) {
         _Screens->insert(pSockFd);
         if(debug)cout<<"se conecto una pantalla"<<endl;
     }
-    else{ 
+    else if(typeOfConnection==UNO){ 
         _Tplayrs++;
         if(debug)cout<<"se conecto un jugador"<<endl;
         *pBandera=true;
@@ -166,17 +166,19 @@ void* servidor::gettDatas(int pPlyr, int newsockfd) {
  * @param msg dato tipo char* const, que es el mensaje que enviaremos.
  * @param lenght dato tipo entero, este es el largo del mensaje.
  */
-void servidor::sendMSG(const char* msg, int lenght) {
-    nodo* temp=_Screens->getHead();
+void servidor::sendMSG(string msg, int lenght) {
+    nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
+    char* tempMSG= (char*)malloc(lenght+UNO);
+    strcpy(tempMSG, msg.c_str());
+    tempMSG[lenght]='\0';
     for(int i =0; i<_Screens->getSize(); i++){
-        _n=send(temp->getData(), msg, lenght,0);
+        _n=send(tempScreen->getData(), tempMSG, lenght,CERO);
         if (_n < CERO) 
             error(error5);
-        if(debug)
-            cout<<"mensaje enviado"<<endl;
-        temp=temp->getNext();
+        tempScreen=tempScreen->getNext();
     }
+    //free(tempMSG);
 }
 
 /**

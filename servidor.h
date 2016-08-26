@@ -36,7 +36,7 @@ class servidor: public Constantes {
 public:
     servidor(int port);
     virtual ~servidor();
-    void sendMSG(const char* msg, int lenght);
+    void sendMSG(string msg, int lenght);
     bool getBoolPlyrs(int plyr);
     void setBoolPlyrs(int plyr);
     void setMsg(int plyr);

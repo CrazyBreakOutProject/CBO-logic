@@ -69,17 +69,18 @@ controlador::~controlador() {
  * ciclo principal para revisar todo.
  */
 void controlador::MainLoop(){
-    int ids=0;
+    int ids=0, temp=0;
     _ply=(Player**)malloc(sizeof(Player*)*MAX_PLAYERS);
     while(true){
         if(_servidor->getTplyrs()>CERO){
             checkForMsgPlayers(&ids);
             //revisamos las coliciones
-            _BricksHit=-UNO;
+            _BrickHit=-UNO;
             checkColl();
             checkCondForMsg();
-            if(_flagTerminate)
+            if(_flagTerminate){
                 break;
+            }
             sleep_(SLEEP_TIME);
         }
     }
@@ -119,8 +120,8 @@ void controlador::checkCondForMsg() {
         //if(debug)cout<<"terminando juego"<<endl;
         msg=_Json->create(NULL, _ply, NULL,_BallsLeft,
                 _servidor->getTplyrs(),-DOS);
-        _servidor->sendMSG(msg.c_str(),msg.length());
-        if(debug)cout<<msg<<endl;
+        _servidor->sendMSG(msg,msg.length());
+        //if(debug)cout<<msg<<endl;
         _flagTerminate=true;
         return;
     }
@@ -129,7 +130,7 @@ void controlador::checkCondForMsg() {
         msg=_Json->create(_pelota, _ply, NULL,_BallsLeft,
                 _servidor->getTplyrs(),_BrickHit);
         _servidor->sendMSG(msg.c_str(),msg.length());
-        if(debug)cout<<msg<<endl;
+        //if(debug)cout<<msg<<endl;
     }
     //en caso de que no seguimos normalmente
     else{
@@ -137,7 +138,7 @@ void controlador::checkCondForMsg() {
         msg=_Json->create(_pelota, _ply, _barras[_BrickHit],
             _BallsLeft,_servidor->getTplyrs(),_BrickHit);
         _servidor->sendMSG(msg.c_str(),msg.length());
-        if(debug)cout<<msg<<endl;
+        //if(debug)cout<<msg<<endl;
     }
 }
 
@@ -177,13 +178,17 @@ void controlador::checkColl() {
     }
     //verificaciones para colicion contra cada UNO de los bloques.
     for(int i=CERO; i<TOTAL_BRICKS; i++){
-        if(_barras[i]!=NULL){
+        if(_barras[i]!=NULL)
             bandera=_barras[i]->checkForHit(&_MoveBallX, &_MoveBallY, _pelota[CERO]);
-            _BrickHit=i;
-        }
+        
         if(bandera && _barras[i]->getHitLft()==CERO){
+            _BrickHit=i;
             _BricksLeft--;
             destroyObj(i);
+            
+        }else if(bandera){
+            _BrickHit=i;
+            _BricksLeft--;
             break;
         }
     }

@@ -121,7 +121,7 @@ public:
             end = std::chrono::system_clock::now();
             elapsed_seconds= end-start;
         }
-        std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
+        //std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
     };
     
 };
