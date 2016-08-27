@@ -53,6 +53,7 @@ private:
     //dato entero que es puerto por el cual van a acceder los clientes.
     int _port;
     int _dirrection;
+    int _score;
     //variables para desplazar la pelota sobre la pantalla
     int _MoveBallX,_MoveBallY;
     /**

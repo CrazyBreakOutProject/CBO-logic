@@ -29,8 +29,6 @@ public:
     static const int LENG_MSG=50;
     /*cantidad maxima de recepcion de jugadores*/
     static const int MAX_PLAYERS=10;
-    /*verificacion de si se conecta una pantalla*/
-    static const char* ScreenConTT;
     
     /*-----------jugador-------------*/
     /*largo de la paleta del jugador en X*/
@@ -47,12 +45,6 @@ public:
     static const int INCREMENT=5;
     /*cantidad de movimiento en pixeles*/
     static const int PIXL_MOV_BAR=10;
-    /**mensaje de que el movimiento es nulo*/
-    static const char* NULL_MOVE;
-    /**mensaje de que el movimiento es izquierdo*/
-    static const char* LEFT_MOVE;
-    /**mensaje de que el movimiento es derecho*/
-    static const char* RIGHT_MOVE;
     
     /*--------------bola-----------------*/
     /*espacio del choque con el primer sector de la barra para cambiar su 
@@ -100,7 +92,9 @@ public:
     static const char* MOVE;
     static const char* PLAYERS;
     static const char* BRICK_HIT;
+    static const char* BRICKS;
     static const char* BRICK_DEL;
+    static const char* SCORE;
     static const char* BALL_POS;
     static const char* POWER;
     static const char* POS;

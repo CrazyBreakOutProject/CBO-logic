@@ -181,6 +181,21 @@ void servidor::sendMSG(string msg, int lenght) {
     //free(tempMSG);
 }
 
+void servidor::sendMSG(string msg, int lenght, int pScreen) {
+    nodo* tempScreen=_Screens->getHead();
+    //if(debug)cout<<_Screens->getSize()<<endl;
+    char* tempMSG= (char*)malloc(lenght+UNO);
+    strcpy(tempMSG, msg.c_str());
+    tempMSG[lenght]='\0';
+    for(int i =0; i<pScreen; i++)
+        tempScreen=tempScreen->getNext();
+    
+    _n=send(tempScreen->getData(), tempMSG, lenght,CERO);
+        if (_n < CERO) 
+            error(error5);
+}
+
+
 /**
  * metodo para hacer el observer y darse cuenta si ya hay
  * un mensaje de parte del cliente, ya tiene el mutex.

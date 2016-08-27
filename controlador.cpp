@@ -69,9 +69,20 @@ controlador::~controlador() {
  * ciclo principal para revisar todo.
  */
 void controlador::MainLoop(){
-    int ids=0, temp=0;
+    int ids=0, screensConnected=0;
     _ply=(Player**)malloc(sizeof(Player*)*MAX_PLAYERS);
+    for(int i=0; i<MAX_PLAYERS; i++){
+        _ply[i]=NULL;
+    }
     while(true){
+        if(_servidor->getScreens()>screensConnected){
+            string starterMSG= _Json->firstMsg(_pelota, _ply, _barras, 
+                    _BallsLeft, _servidor->getTplyrs(),_score);
+            _servidor->sendMSG(starterMSG, starterMSG.length(),
+                    screensConnected);
+            screensConnected++;
+            sleep_(SLEEP_TIME);
+        }
         if(_servidor->getTplyrs()>CERO){
             checkForMsgPlayers(&ids);
             //revisamos las coliciones
@@ -119,7 +130,7 @@ void controlador::checkCondForMsg() {
     if(_BallsLeft==CERO || _BricksLeft==CERO){
         //if(debug)cout<<"terminando juego"<<endl;
         msg=_Json->create(NULL, _ply, NULL,_BallsLeft,
-                _servidor->getTplyrs(),-DOS);
+                _servidor->getTplyrs(),-DOS,_score);
         _servidor->sendMSG(msg,msg.length());
         //if(debug)cout<<msg<<endl;
         _flagTerminate=true;
@@ -128,7 +139,7 @@ void controlador::checkCondForMsg() {
     else if(_BrickHit==-UNO){
         //if(debug)cout<<"ladrillo no golpeado"<<endl;
         msg=_Json->create(_pelota, _ply, NULL,_BallsLeft,
-                _servidor->getTplyrs(),_BrickHit);
+                _servidor->getTplyrs(),_BrickHit,_score);
         _servidor->sendMSG(msg.c_str(),msg.length());
         //if(debug)cout<<msg<<endl;
     }
@@ -136,7 +147,7 @@ void controlador::checkCondForMsg() {
     else{
         //if(debug)cout<<"ladrillo golpeado"<<endl;
         msg=_Json->create(_pelota, _ply, _barras[_BrickHit],
-            _BallsLeft,_servidor->getTplyrs(),_BrickHit);
+            _BallsLeft,_servidor->getTplyrs(),_BrickHit,_score);
         _servidor->sendMSG(msg.c_str(),msg.length());
         //if(debug)cout<<msg<<endl;
     }
@@ -180,13 +191,14 @@ void controlador::checkColl() {
     for(int i=CERO; i<TOTAL_BRICKS; i++){
         if(_barras[i]!=NULL)
             bandera=_barras[i]->checkForHit(&_MoveBallX, &_MoveBallY, _pelota[CERO]);
-        
         if(bandera && _barras[i]->getHitLft()==CERO){
             _BrickHit=i;
             _BricksLeft--;
+            _score+=(_barras[i]->getHitLft()+UNO)*DIEZ;
             destroyObj(i);
             
         }else if(bandera){
+            _score+=(_barras[i]->getHitLft()+UNO)*DIEZ;
             _BrickHit=i;
             _BricksLeft--;
             break;

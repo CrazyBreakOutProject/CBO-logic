@@ -168,26 +168,26 @@ std::string item_address;ver->sendMSG("hola_mundo",10);
     Bola** _pelotaPrueba= (Bola**)malloc(sizeof(Bola*)*10);
     _pelotaPrueba[0]=(Bola*)malloc(sizeof(Bola));
     _pelotaPrueba[0]->setPos(800/2-20,POS_Y_PLY-(25));
-    BarraPLY ** _ply=(BarraPLY**)malloc(sizeof(BarraPLY*)*2);
-    _ply[0]=(BarraPLY*)malloc(sizeof(BarraPLY));
+    Player ** _ply=(Player**)malloc(sizeof(Player*)*2);
+    _ply[0]=(Player*)malloc(sizeof(Player));
     _ply[0]->setDatas(0);
-    _ply[1]=(BarraPLY*)malloc(sizeof(BarraPLY));
+    _ply[1]=(Player*)malloc(sizeof(Player));
     _ply[1]->setDatas(1);
-    BarraDes ** _barras= (BarraDes**)malloc(sizeof(BarraDes*)*15);
+    Brick ** _barras= (Brick**)malloc(sizeof(Brick*)*64);
     JsonCreator* nuevoJson= new JsonCreator();
     //_pelota[0]= new Bola(800/2-20,POS_Y_PLY-(25));
     //_pelota[1]= new Bola(800/2-20,POS_Y_PLY-(25));
     //_ply[0]= new BarraPLY(0);
     //_ply[1]= new BarraPLY(1);
     int _BallsLeft=1;
-    int _PlayersLeft=2;
-    /*---------------------------------------------------------------------*
+    int _PlayersLeft=1;
+    /*---------------------------------------------------------------------**
     //incializacion de los bloques
-    int _BarrsLeft=15;
-    int space=0;
-    for(int i=0; i<15;i++){
+    int _BarrsLeft=64;
+    int score=100;
+    for(int i=0; i<64;i++){
         int fuerza= (rand()%3)+1;
-        _barras[i]=(BarraDes*)malloc(sizeof(BarraDes));
+        _barras[i]=(Brick*)malloc(sizeof(Brick));
         _barras[i]->setDatas(i*50,(i*50)+(50),fuerza);
     }
     //prueba para pelota sin golpear--funciona
@@ -197,6 +197,7 @@ std::string item_address;ver->sendMSG("hola_mundo",10);
     //string pruebaJson= nuevoJson->create(_pelotaPrueba, _ply, _barras[1],_BallsLeft,_PlayersLeft,1);
     //prueba para terminar juego--funciona
     //string pruebaJson= nuevoJson->create(NULL, _ply, NULL, _BallsLeft,_PlayersLeft,-2);
+    string pruebaJson = nuevoJson->firstMsg(_pelotaPrueba, _ply, _barras, _BallsLeft, _PlayersLeft, score);
     cout<<pruebaJson<<endl;*/
     return 0;
 }

@@ -28,7 +28,9 @@ public:
     JsonCreator();
     virtual ~JsonCreator();    
     string create(Bola* bola[], Player* plyrs[], Brick* Barrs,int pBolas,
-    int pPlyrs, int pBarrs);
+    int pPlyrs, int pBarrs, int pScore);
+    string firstMsg(Bola* bola[], Player* plyrs[], Brick* Barrs[],
+    int pBolas, int pPlyrs, int pScore);
 private:
 };
 

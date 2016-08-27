@@ -37,6 +37,7 @@ public:
     servidor(int port);
     virtual ~servidor();
     void sendMSG(string msg, int lenght);
+    void sendMSG(string msg, int lenght, int pScreen);
     bool getBoolPlyrs(int plyr);
     void setBoolPlyrs(int plyr);
     void setMsg(int plyr);
