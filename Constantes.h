@@ -17,7 +17,7 @@
 class Constantes {
 private:
     /* constante usada para definir el tamaño estandar de la paleta*/
-    static const int BAR_LENG_X=100;
+    static const int BAR_LENG_X=155;
 public:
     /*tamaño de la pantalla en X*/
     static const int SCREEN_X=800;
@@ -32,7 +32,7 @@ public:
     
     /*-----------jugador-------------*/
     /*largo de la paleta del jugador en X*/
-    static const int PLAYER_LENGHT=100;
+    static const int PLAYER_LENGHT=155;
     /*largo de la paleta del jugador en Y*/
     static const int PLAYER_LENGHT_Y=20;
     /*pos inicial de la paleta en X*/
