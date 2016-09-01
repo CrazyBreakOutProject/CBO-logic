@@ -81,7 +81,6 @@ void controlador::MainLoop(){
             _servidor->sendMSG(starterMSG, starterMSG.length(),
                     screensConnected);
             screensConnected++;
-            sleep_(SLEEP_TIME);
         }
         if(_servidor->getTplyrs()>CERO){
             checkForMsgPlayers(&ids);

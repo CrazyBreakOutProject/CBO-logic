@@ -84,7 +84,7 @@ void* servidor::ServerLoop() {
                     &servidor::ClienteLoopHelper,&temp)!=CERO)
                 error(error4);
             flagForPlayer=false;
-            }
+        }
         if(debug)
             printf("servidor: got connection from %s port %d\n",
                     inet_ntoa(_cli_addr.sin_addr), ntohs(_cli_addr.sin_port));
@@ -170,15 +170,15 @@ void servidor::sendMSG(string msg, int lenght) {
     nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
     char* tempMSG= (char*)malloc(lenght+UNO);
-    memcpy(tempMSG, msg.c_str(),lenght);
+    strcpy(tempMSG, msg.c_str());
     tempMSG[lenght]='\n';
     for(int i =0; i<_Screens->getSize(); i++){
-        _n=send(tempScreen->getData(), tempMSG, lenght,CERO);
+        _n=send(tempScreen->getData(), tempMSG, lenght+UNO,CERO);
         if (_n < CERO) 
             error(error5);
         tempScreen=tempScreen->getNext();
     }
-    //free(tempMSG);
+    free(tempMSG);
 }
 
 /**
@@ -192,15 +192,16 @@ void servidor::sendMSG(string msg, int lenght) {
 void servidor::sendMSG(string msg, int lenght, int pScreen) {
     nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
-    char* tempMSG= (char*)malloc(lenght+UNO);
-    memcpy(tempMSG, msg.c_str(), lenght);
+    char* tempMSG=(char*)malloc(lenght+UNO);
+    strcpy(tempMSG, msg.c_str());
     tempMSG[lenght]='\n';
     for(int i =0; i<pScreen; i++)
         tempScreen=tempScreen->getNext();
     
-    _n=send(tempScreen->getData(), tempMSG, lenght,CERO);
+    _n=send(tempScreen->getData(), tempMSG, lenght+UNO,CERO);
         if (_n < CERO) 
             error(error5);
+    free(tempMSG);
 }
 
 
