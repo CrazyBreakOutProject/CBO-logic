@@ -18,4 +18,4 @@ const char* Constantes::BRICK_DEL="del";
 const char* Constantes::BALL_POS="ballPos";
 const char* Constantes::POWER="power";
 const char* Constantes::POS="pos";
-const double Constantes::SLEEP_TIME=2;
+const double Constantes::SLEEP_TIME=0.5;
