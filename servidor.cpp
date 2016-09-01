@@ -170,8 +170,8 @@ void servidor::sendMSG(string msg, int lenght) {
     nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
     char* tempMSG= (char*)malloc(lenght+UNO);
-    strcpy(tempMSG, msg.c_str());
-    tempMSG[lenght]='\0';
+    memcpy(tempMSG, msg.c_str(),lenght);
+    tempMSG[lenght]='\n';
     for(int i =0; i<_Screens->getSize(); i++){
         _n=send(tempScreen->getData(), tempMSG, lenght,CERO);
         if (_n < CERO) 
@@ -181,12 +181,20 @@ void servidor::sendMSG(string msg, int lenght) {
     //free(tempMSG);
 }
 
+/**
+ * metodo para enviar un mensaje especifico a una pantalla, se usa para
+ * cuando una nueva pantalla se conecta, se le debe de enviar el mensaje
+ * de las posiciones y la informacion que debe de desplegar en pantalla
+ * @param msg
+ * @param lenght
+ * @param pScreen
+ */
 void servidor::sendMSG(string msg, int lenght, int pScreen) {
     nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
     char* tempMSG= (char*)malloc(lenght+UNO);
-    strcpy(tempMSG, msg.c_str());
-    tempMSG[lenght]='\0';
+    memcpy(tempMSG, msg.c_str(), lenght);
+    tempMSG[lenght]='\n';
     for(int i =0; i<pScreen; i++)
         tempScreen=tempScreen->getNext();
     
