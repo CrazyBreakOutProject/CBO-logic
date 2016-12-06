@@ -120,10 +120,10 @@ void Player::move(string Moviment) {
     }//obtenemos la operacion a realizar
     rapidjson::Value & data = _JsonDocument[MOVE];
     int move= data.GetInt();
-    if(_PosX>CERO && move==DOS){
+    if((_PosX+BAR_LENG_X_SECTOR3)<SCREEN_X && move==DOS){
             _PosX+=PIXL_MOV_BAR;
     }
-    else if((_PosX+BAR_LENG_X_SECTOR3)<SCREEN_X && move==CERO){
+    else if(_PosX>CERO && move==CERO){
             _PosX-=PIXL_MOV_BAR;
     }
 }

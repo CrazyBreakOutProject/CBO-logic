@@ -16,7 +16,7 @@ servidor::servidor(int port) {
     _Screens= new lista();
     pthread_t hiloServer;
     _Boolplyrs=(bool*)malloc(sizeof(bool)*MAX_PLAYERS);
-    _plyMSG=(string*)malloc(sizeof(string)*MAX_PLAYERS);
+    _plyMSG=(char**)malloc(sizeof(char*)*MAX_PLAYERS);
     for(int i=0; i<MAX_PLAYERS; i++)
         _Boolplyrs[i]=false;
     //inicializar el mutex 
@@ -76,7 +76,7 @@ void* servidor::ServerLoop() {
             //bloque para crear datos para el cliente
             ThreadClienteData temp;
             temp.data=this;
-            temp.playr=_Tplayrs-UNO;
+            temp.playr=_Tplayrs;
             temp.sockFd=_newsockfd;
             //creacion del hilo para el cliente.
             pthread_t hiloCliente;
@@ -84,6 +84,9 @@ void* servidor::ServerLoop() {
                     &servidor::ClienteLoopHelper,&temp)!=CERO)
                 error(error4);
             flagForPlayer=false;
+            pthread_mutex_lock(&_lock);
+            _Tplayrs++;
+            pthread_mutex_unlock(&_lock);
         }
         if(debug)
             printf("servidor: got connection from %s port %d\n",
@@ -91,17 +94,6 @@ void* servidor::ServerLoop() {
     }
     close(_sockfd);
     pthread_exit(NULL);
-}
-
-/**
- * metodo para botar todo el programa si existe algun fallo y 
- * evitar errores futuros.
- * @param msg dato char* que es el mensaje que corresponde a error 
- * probocado.
- */
-void servidor::error(const char* msg) {
-    perror(msg);
-    exit(UNO);
 }
 
 /**
@@ -128,9 +120,8 @@ void servidor::ClasifiedClient(int pSockFd, bool * pBandera) {
         if(debug)cout<<"se conecto una pantalla"<<endl;
     }
     else if(typeOfConnection==UNO){ 
-        _Tplayrs++;
+        (*pBandera)=true;
         if(debug)cout<<"se conecto un jugador"<<endl;
-        *pBandera=true;
     }
         
 }
@@ -146,10 +137,11 @@ void* servidor::gettDatas(int pPlyr, int newsockfd) {
     void* almacenador= malloc(LENG_MSG+UNO);
     while(true){
         while(!getBoolPlyrs(pPlyr)){
-            bzero(almacenador, LENG_MSG+UNO);
+            bzero(almacenador, LENG_MSG);
             _n = recv(newsockfd,almacenador,LENG_MSG,0);
             if (_n < CERO)
                 error(error6);
+            cout<<"mensaje recibido de:"<<pPlyr<<";"<<(char*)almacenador<<endl;
             pthread_mutex_lock(&_lock);
             _plyMSG[pPlyr]=(char *)almacenador;
             _Boolplyrs[pPlyr]=true;
@@ -160,7 +152,6 @@ void* servidor::gettDatas(int pPlyr, int newsockfd) {
     pthread_exit(NULL);
 }
 
-
 /**
  * metodo para enviar los mensajes a la pantalla y alertar los cambios
  * @param msg dato tipo char* const, que es el mensaje que enviaremos.
@@ -170,7 +161,7 @@ void servidor::sendMSG(string msg, int lenght) {
     nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
     char* tempMSG= (char*)malloc(lenght+UNO);
-    strcpy(tempMSG, msg.c_str());
+    memcpy(tempMSG, msg.c_str(),lenght);
     tempMSG[lenght]='\n';
     for(int i =0; i<_Screens->getSize(); i++){
         _n=send(tempScreen->getData(), tempMSG, lenght+UNO,CERO);
@@ -193,17 +184,15 @@ void servidor::sendMSG(string msg, int lenght, int pScreen) {
     nodo* tempScreen=_Screens->getHead();
     //if(debug)cout<<_Screens->getSize()<<endl;
     char* tempMSG=(char*)malloc(lenght+UNO);
-    strcpy(tempMSG, msg.c_str());
+    memcpy(tempMSG, msg.c_str(),lenght);
     tempMSG[lenght]='\n';
     for(int i =0; i<pScreen; i++)
         tempScreen=tempScreen->getNext();
-    
     _n=send(tempScreen->getData(), tempMSG, lenght+UNO,CERO);
         if (_n < CERO) 
             error(error5);
     free(tempMSG);
 }
-
 
 /**
  * metodo para hacer el observer y darse cuenta si ya hay
@@ -212,8 +201,9 @@ void servidor::sendMSG(string msg, int lenght, int pScreen) {
  * @return retorna un dato tipo bool.
  */
 bool servidor::getBoolPlyrs(int plyr) {
+    bool dato;
     pthread_mutex_lock(&_lock);
-    bool dato= _Boolplyrs[plyr];
+    dato= _Boolplyrs[plyr];
     pthread_mutex_unlock(&_lock);
     return dato;
 }
@@ -235,8 +225,9 @@ void servidor::setBoolPlyrs(int plyr) {
  * @return retorna un dato tipo string que es el mensaje del cliente
  */
 string servidor::getMSGPlyrs(int plyr) {
+    string dato;
     pthread_mutex_lock(&_lock);
-    string dato= _plyMSG[plyr];
+    dato= _plyMSG[plyr];
     pthread_mutex_unlock(&_lock);
     return dato;
 }
@@ -274,4 +265,15 @@ bool servidor::getServerState() {
     bool temp=_killSystem;
     pthread_mutex_unlock(&_lock);
     return temp;
+}
+
+/**
+ * metodo para botar todo el programa si existe algun fallo y 
+ * evitar errores futuros.
+ * @param msg dato char* que es el mensaje que corresponde a error 
+ * probocado.
+ */
+void servidor::error(const char* msg) {
+    perror(msg);
+    exit(UNO);
 }

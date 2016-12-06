@@ -90,7 +90,7 @@ std::string item_address;<<endl;
 std::string item_address;ver->sendMSG("hola_mundo",10);
     }
     cin.ignore();*/
-    controlador * pruebaControlador = new controlador(5001);
+    controlador * pruebaControlador = new controlador(5000);
     //sleep_(0.05);
     /*prueba de coliciones
     Bola * pBola= new Bola(180,150);

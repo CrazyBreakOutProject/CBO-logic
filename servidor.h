@@ -59,7 +59,7 @@ private:
     //bool _Boolplyrs[MAX_PLAYERS];
     //string _plyMSG[MAX_PLAYERS];
     bool* _Boolplyrs;
-    string* _plyMSG;
+    char** _plyMSG;
     //_ToScreen es el sockfd que sera el cliente al cual se le envia
     //la imagen.
     lista * _Screens;

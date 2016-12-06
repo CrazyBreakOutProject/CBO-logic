@@ -7,12 +7,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ellioth/CrazyBreakoutLogic/nodo.h</file>
-            <file>file:/home/ellioth/CrazyBreakoutLogic/servidor.h</file>
-            <file>file:/home/ellioth/CrazyBreakoutLogic/controlador.h</file>
-            <file>file:/home/ellioth/CrazyBreakoutLogic/Constantes.h</file>
-            <file>file:/home/ellioth/CrazyBreakoutLogic/servidor.cpp</file>
-            <file>file:/home/ellioth/CrazyBreakoutLogic/controlador.cpp</file>
+            <file>file:/local/home/curso/Escritorio/CrazyBreakoutLogic/servidor.cpp</file>
+            <file>file:/local/home/curso/Escritorio/CrazyBreakoutLogic/Constantes.cpp</file>
+            <file>file:/local/home/curso/Escritorio/CrazyBreakoutLogic/JsonCreator.cpp</file>
+            <file>file:/local/home/curso/Escritorio/CrazyBreakoutLogic/Player.cpp</file>
+            <file>file:/local/home/curso/Escritorio/CrazyBreakoutLogic/main.cpp</file>
+            <file>file:/local/home/curso/Escritorio/CrazyBreakoutLogic/controlador.cpp</file>
         </group>
     </open-files>
 </project-private>

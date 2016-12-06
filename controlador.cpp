@@ -106,7 +106,6 @@ void controlador::checkForMsgPlayers(int* pAmmountPLayers) {
     for(int i=CERO; i<_servidor->getTplyrs(); i++){
         //verificamos si los players son nulos para crearlos 
         if(_ply[i]==NULL){
-            if(debug)cout<<"jugador conectado"<<endl;
             _ply[i]=(Player*)malloc(sizeof(Player));
             _ply[i]->setDatas(*pAmmountPLayers);
             (*pAmmountPLayers)++;
@@ -148,8 +147,9 @@ void controlador::checkCondForMsg() {
         msg=_Json->create(_pelota, _ply, _barras[_BrickHit],
             _BallsLeft,_servidor->getTplyrs(),_BrickHit,_score);
         _servidor->sendMSG(msg.c_str(),msg.length());
-        //if(debug)cout<<msg<<endl;
     }
+    if(debug)cout<<msg<<endl;
+    
 }
 
 /**
@@ -193,11 +193,11 @@ void controlador::checkColl() {
         if(bandera && _barras[i]->getHitLft()==CERO){
             _BrickHit=i;
             _BricksLeft--;
-            _score+=(_barras[i]->getHitLft()+UNO)*DIEZ;
+            _score+=DIEZ;
             destroyObj(i);
             
         }else if(bandera){
-            _score+=(_barras[i]->getHitLft()+UNO)*DIEZ;
+            _score+=DIEZ;
             _BrickHit=i;
             _BricksLeft--;
             break;
